@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Party Maker</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI Party Maker</h1>
+            <p class="subtitle">Выбор игрового сценария</p>
+        </header>
+
+        <main class="game-selection">
+            <div class="card active">
+                <div class="card-content">
+                    <h2>Мафия</h2>
+                    <p>Ролевая игра на выбывание. Вычислите мафию или обманите мирных жителей.</p>
+                    <form method="POST" action="{% url 'setup_mafia' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-start">Выбрать игру</button>
+                    </form>
+                </div>
+                <div class="card-badge">Доступно</div>
+            </div>
+
+            <div class="card disabled">
+                <div class="card-content">
+                    <h2>Бункер</h2>
+                    <p>Дискуссионная игра на выживание. Скоро будет добавлена в список доступных сценариев.</p>
+                    <button disabled class="btn-disabled">В разработке</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Система управления нейросетевыми сессиями v1.0</p>
+        </footer>
+    </div>
+</body>
+</html>
