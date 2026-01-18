@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Конструктор сессии</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Настройка стола</h1>
+
+        <div class="setup-section">
+            <p class="section-title">Очередь ходов (перетаскивай блоки здесь):</p>
+            <div id="table-order" class="player-slots">
+                </div>
+        </div>
+
+        <div class="setup-section">
+            <p class="section-title">Количество игроков:</p>
+            <div class="limit-selector">
+                <button type="button" class="limit-btn" onclick="setLimit(6)">6</button>
+                <button type="button" class="limit-btn" onclick="setLimit(8)">8</button>
+                <button type="button" class="limit-btn active" onclick="setLimit(10)">10</button>
+            </div>
+        </div>
+
+        <div class="setup-section">
+            <p class="section-title">Доступные нейросети:</p>
+            <div id="available-pool" class="player-grid">
+                {% for name in all_models %}
+                <div class="player-card" data-id="{{ name }}">
+                    {{ name }}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <form method="POST" action="{% url 'start_game' %}">
+            {% csrf_token %}
+            <input type="hidden" name="final_order" id="final-order-input">
+            <button type="submit" id="submit-btn" class="btn-start" disabled>Выбери 10 игроков</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    <script src="{% static 'js/setup_mafia.js' %}"></script>
+</body>
+</html>

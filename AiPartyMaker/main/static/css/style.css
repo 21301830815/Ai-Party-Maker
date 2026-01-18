@@ -114,3 +114,72 @@ footer {
     color: var(--disabled-color);
     font-size: 0.9rem;
 }
+.setup-container { max-width: 800px; margin: 40px auto; }
+        .limit-selector { margin-bottom: 30px; display: flex; gap: 15px; justify-content: center; }
+        .limit-btn {
+            background: var(--card-bg); border: 2px solid var(--disabled-color);
+            color: white; padding: 10px 20px; border-radius: 8px; cursor: pointer;
+        }
+        .limit-btn.active { border-color: var(--accent-color); color: var(--accent-color); }
+
+        .player-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px; margin-bottom: 30px;
+        }
+        .player-card {
+            background: var(--card-bg); padding: 15px; border-radius: 10px;
+            cursor: pointer; border: 2px solid transparent; transition: 0.3s;
+            position: relative; text-align: center; opacity: 0.5;
+        }
+        .player-card.selected { opacity: 1; border-color: var(--accent-color); transform: scale(1.05); }
+        .order-num {
+            position: absolute; top: 5px; left: 10px;
+            color: var(--accent-color); font-weight: bold; font-size: 0.9rem;
+        }
+        .btn-start:disabled { opacity: 0.5; cursor: not-allowed; }
+.player-slots {
+    min-height: 60px;
+    background: #0f172a;
+    border: 2px dashed #334155;
+    border-radius: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.player-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+}
+
+.player-card {
+    background: #1e293b;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid #475569;
+    user-select: none;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.player-card:hover {
+    border-color: #38bdf8;
+    background: #334155;
+}
+
+/* Стиль блока, когда он находится в очереди (сверху) */
+#table-order .player-card {
+    background: #38bdf8;
+    color: #0f172a;
+    font-weight: bold;
+    cursor: grab; /* Иконка руки для перетаскивания */
+}
+
+.sortable-ghost {
+    opacity: 0.4;
+}
